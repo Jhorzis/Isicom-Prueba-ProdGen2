@@ -1,0 +1,114 @@
+<div class="pagina__contenedor">
+	<div class="pagina__miga">
+      Administracion<span>//</span>Producto Generico<span>//</span>Consulta Producto Generico
+    </div>
+    <table width="100%">
+        <tr>
+            <td></td>
+            <td class="pagina__titulo">{{titulo}}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="bloque__header1 bloque__header__oscuro bloque__top__redondeado">
+                Búsqueda</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <table style="width:100%" id="tbl_filtros">
+                    <tr>
+                        <td></td>
+                        <td class="bloque__contenido bloque__contenido__oscuro">
+                            <div class="bloque__columnas">
+                                <div class="bloque__49">
+                                    <select id="cb_Linea" class="input input__oscuro select" 
+                                    [compareWith]="placeSelect"
+                                    name="lineaSelect" [(ngModel)]="lineaSelect" (change)="mostrarSelec()">
+                                        <option [ngValue]="obj" *ngFor="let obj of Linea">
+                                            {{obj.nombre}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="bloque__49">
+                                    <select id="cb_SubLinea" class="input input__oscuro select" [compareWith]="placeSelect"
+                                    name="subLineaSelect" [(ngModel)]="subLineaSelect" (change)="mostrarSelec()">
+                                        <option [ngValue]="obj" *ngFor="let obj of subLinea">
+                                            {{obj.nombre}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="bloque__columnas">
+                                <div class="bloque__49">
+                                    <input type="text" id="txt_Segmento"
+										class="input input__oscuro" placeholder="Ingrese Producto"/>
+                                </div>
+                            </div>
+                            <div class="busqueda__simple bloque__contenido__flex__end">
+                                <input id="btnLimpiar" type="submit" Class="boton boton__negro" value="Limpiar"/>
+                                <input id="btnBuscar" type="submit" Class="boton boton__verde" value="Buscar"/>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="bloque__contenido bloque__contenido__gris bloque__contenido__flex__end">
+                            <a [routerLink]="['/Prod-Generico']" class="link link__agregar">Agregar Producto Generico</a>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+            <td></td>
+            <tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+            <tr>
+				<td></td>
+				<td>
+                    <div>
+                        <table id="dataTable1" role="grid" aria-readonly="true" style="width: 100%;"
+                        class="tabla">
+                            <thead>
+                                <tr role="row">
+                                    <th role="columnheader" class="tabla__td__left" scope="col">
+                                        <span>Sociedad</span>
+                                    </th>
+                                    <th role="columnheader" class="tabla__td__left" scope="col">
+                                        <span>Línea</span>
+                                    </th>
+                                    <th role="columnheader" class="tabla__td__left" scope="col">
+                                        <span>Sublínea</span>
+                                    </th>
+                                    <th role="columnheader" class="tabla__td__left" scope="col">
+                                        <span>Código Producto</span>
+                                    </th>
+                                    <th role="columnheader" class="tabla__td__left" scope="col">
+                                        <span>Producto</span>
+                                    </th>
+                                    <th role="columnheader" class="tabla__td__left" scope="col">
+                                        <span>UM</span>
+                                    </th>
+                                    <th role="columnheader" class="tabla__td__left" scope="col">
+                                        <span>Estado</span>
+                                    </th>
+                                    <th role="columnheader" class="tabla__td__left" scope="col">
+                                        <span></span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </td>
+				<td></td>
+			</tr>
+        
+        
+    </table>
+</div>
