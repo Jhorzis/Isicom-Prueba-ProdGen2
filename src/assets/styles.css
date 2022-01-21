@@ -2,6 +2,14 @@
   border-bottom: 3px solid #C2C2C2;
 }
 
+label,span{
+  font-family: 'PoppinsRegular' !important;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
 @font-face{
     font-family: 'PoppinsSemibold';
     src: url(font/poppins_semibold.eot);

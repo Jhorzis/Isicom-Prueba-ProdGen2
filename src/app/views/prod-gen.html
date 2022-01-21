@@ -1,0 +1,145 @@
+<form #formProducto="ngForm" (ngSubmit)="onSubmit()" id="form-producto">
+    
+    <div class="pagina__contenedor">
+        <div class="pagina__miga">
+        Administracion<span>//</span>Producto Generico<span>//</span>Producto Generico
+        </div>
+        <table width="100%">
+            <tr>
+                <td></td>
+                <td class="pagina__titulo">{{titulo}}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="bloque">
+                <td></td>
+                <td class="bloque__header2 bloque__header1__claro bloque__top__redondeado">
+                    Datos de Producto Genérico
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <table style="width:100%" id="table_data">
+                        <tr>
+                            <td></td>
+                            <td class="bloque__contenido bloque__contenido__blanco bloque__columnas" style="margin-bottom: 0px;">
+                                <div class="bloque__49">
+                                    <span style=" font-family: 'PoppinsMedium';">Codigo Sociedad: </span>
+                                    <span style="color:rgb(255,0,0)">*</span>
+                                    <input type="text" #campo1="ngModel" style="width: 66%; margin-left: 10px;" 
+                                    name="campo1" [(ngModel)]="admin.campo1" class="input input__basico" required />
+                                </div>
+                                <div class="bloque__49">
+                                    <span style=" font-family: 'PoppinsMedium';">Linea: </span>
+                                    <span style="color:rgb(255,0,0)">*</span>
+                                    <select class="input input__basico select" [compareWith]="placeSelect" required
+                                    name="admin.combo1" [(ngModel)]="admin.combo1" (change)="mostrarSelec()"
+                                    style="width: 86%; margin-left: 10px;">
+                                        <option [ngValue]="obj" *ngFor="let obj of Linea">
+                                            {{obj.nombre}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="bloque__contenido bloque__contenido__blanco bloque__columnas" style="margin-bottom: 0px;">
+                                <div class="bloque__49">
+                                    <span style=" font-family: 'PoppinsMedium';">Sub-Linea: </span>
+                                    <span style="color:rgb(255,0,0)">*</span>
+                                    <select class="input input__basico select" [compareWith]="placeSelect" required
+                                    name="admin.combo2" [(ngModel)]="admin.combo2" (change)="mostrarSelec()"
+                                    style="width: 66%; margin-left: 10%;">
+                                        <option [ngValue]="obj" *ngFor="let obj of subLinea">
+                                            {{obj.nombre}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="bloque__49 bloque__columnas" >
+									<div style="width: 31%;">
+                                        <span style=" font-family: 'PoppinsMedium';">Producto: </span>
+                                        <span style="color:rgb(255,0,0)">*</span>
+                                        <div style="margin-top: 5px;">
+                                            <input type="radio" id="prodtipo1" name="prodtipo" [value]="'Codigo'"
+                                            [(ngModel)]="admin.campo2">
+                                            <label for="prodtipo1" >Codigo</label>
+                                            <input type="radio" id="prodtipo2" name="prodtipo" [value]="'Nombre'"
+                                            [(ngModel)]="admin.campo2">
+                                            <label for="prodtipo2" >Nombre</label>
+                                        </div>
+                                        <mat-radio-group aria-label="Selecciona una opcion">
+                                            <mat-radio-button value="'codigo'">Codigo</mat-radio-button>
+                                            <mat-radio-button value="'Nombre'">Nombre</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                    <div style="width: 65%; margin-right: 4%;">
+                                        <input type="text" #campo1="ngModel" style="width: 65%; margin-left: 10px;" 
+                                        name="campo3" [(ngModel)]="admin.campo3" class="input input__basico"  />
+                                        <input id="btnBuscar" type="button" style="width: 30%; margin-left: 10px;"
+                                        (click)="buscarProducto()" Class="boton boton__verde" value="Buscar" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+							<td></td>
+							<td class="bloque__contenido bloque__contenido__blanco bloque__columnas" style="margin-bottom: 0px;">
+								<div class="bloque__49">
+                                    <span style=" font-family: 'PoppinsMedium';">Codigo - Nombre: </span>
+									<span style="color:rgb(255,0,0); font-family: 'PoppinsMedium';" >{{mensaje_error}}</span>
+									<span> {{admin.campo4}}</span> - <span>{{admin.campo5}}</span>
+                                </div>
+                                <div class="bloque__49">
+                                    <span style=" font-family: 'PoppinsMedium';">Unidad de Medida: </span>
+									<span style="font-family: 'PoppinsRegular';" >{{admin.campo6}}</span>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+							<td></td>
+							<td class="bloque__contenido bloque__contenido__blanco bloque__columnas" style="margin-bottom: 0px;">
+								<div class="bloque__49">
+                                    <span style=" font-family: 'PoppinsMedium';">Estado: </span>
+                                    <span style="color:rgb(255,0,0)">*</span>
+                                    <select class="input input__basico select" required style="width: 66%; margin-left: 10%;">
+                                        <option [value]="'ACTIVO'" selected>ACTIVO</option>
+                                        <option [value]="'INACTIVO'">INACTIVO</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="bloque__contenido bloque__contenido__gris bloque__contenido__flex__end bloque__contenido__guardar">
+                    <input type="button" [routerLink]="['/ConsultaProdGenerico']"
+                    class="boton boton__negro" value="Cancelar"/>&#160;&#160;
+                    <input type="button" class="boton boton__verde" value="Grabar"/>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <ng-template dlg_producto></ng-template>
+   
+</form>
+
