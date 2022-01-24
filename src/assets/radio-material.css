@@ -1,0 +1,33 @@
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+  
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+opacity: 0 !important; /*click effect color change*/
+background-color: #000000 !important;  }
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+background-color: #000000 !important; /*inner circle color change*/  }
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+border-color: #000000 !important; /*outer ring color change*/  }
+
+.mat-radio-container{
+height: 15px !important;
+width: 15px !important;
+}
+.mat-radio-outer-circle{
+height: 15px !important;
+width: 15px !important;
+}
+.mat-radio-inner-circle{
+height: 15px !important;
+width: 15px !important;
+}
+.mat-radio-button .mat-radio-ripple{
+height: 20px; /*double of your required circle radius*/
+width: 20px;  /*double of your required circle radius*/
+left: calc(50% - 10px); /*'10px'-same as your required circle radius*/
+top: calc(50% - 10px); /*'10px'-same as your required circle radius*/
+}

@@ -6,22 +6,17 @@ label,span{
   font-family: 'PoppinsRegular' !important;
 }
 
-.mat-radio-button ~ .mat-radio-button {
-  margin-left: 16px;
-}
-
 @font-face{
     font-family: 'PoppinsSemibold';
     src: url(font/poppins_semibold.eot);
-    src: url(font/poppins_semibold.eot?#iefix) format('embedded-opentype'),
-         url(font/poppins_semibold.ttf) format('truetype');
+    src: url(font/poppins_semibold.ttf) format('truetype');
     font-weight: normal;
     font-style: normal;
   }
-  
+ 
   @font-face{
     font-family: 'PoppinsMedium';
-    src: url(./font/poppins_medium.eot) format("opentype");
+    src: url(font/poppins_medium.eot) format("opentype");
     src: url(font/poppins_medium.ttf) format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -30,8 +25,7 @@ label,span{
   @font-face{
     font-family: 'PoppinsRegular';
     src: url(font/poppins_regular.eot);
-    src: url(font/poppins_regular.eot?#iefix) format('embedded-opentype'),
-         url(font/poppins_regular.ttf) format('truetype');
+    src: url(font/poppins_regular.ttf) format('truetype');
     font-weight: normal;
     font-style: normal;
   }

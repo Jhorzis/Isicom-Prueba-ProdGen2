@@ -31,14 +31,14 @@ export class ProdGenComponent implements OnInit {
 
     ngOnInit(): void {
         this.Linea.push(new Linea("00","Selecione una Linea"));
-        this.Linea.push(new Linea("1","Concreto"));
-        this.Linea.push(new Linea("2","Cemento"));
+        /*this.Linea.push(new Linea("1","Concreto"));
+        this.Linea.push(new Linea("2","Cemento"));*/
         this.subLinea.push(new SubLinea("00","0","Selecione una SubLinea"));
         
     }
 
     buscarProducto(){
-        console.log("Buscar producto");
+        console.log("Buscar producto: "+this.admin.campo2);
         const dialogRef = this.dlg.open(dlg_producto,{
             width: '700px',
             data: {titulo: this.titulo}

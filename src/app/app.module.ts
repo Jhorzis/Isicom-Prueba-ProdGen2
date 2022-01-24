@@ -4,13 +4,17 @@ import { routing, appRoutingProviders } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule} from '@angular/material/radio';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
+
+//Importar httpclient para servicios
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConProdGenComponent } from './components/con-prod-gen.component'; 
 import { ProdGenComponent } from './components/prod-gen.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     NoopAnimationsModule,
     MatDialogModule,
     MatRadioModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]

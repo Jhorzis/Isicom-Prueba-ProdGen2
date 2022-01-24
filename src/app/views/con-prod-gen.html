@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="bloque__49">
                                     <select id="cb_SubLinea" class="input input__oscuro select" [compareWith]="placeSelect"
-                                    name="subLineaSelect" [(ngModel)]="subLineaSelect" (change)="mostrarSelec()">
+                                    name="subLineaSelect" [(ngModel)]="subLineaSelect">
                                         <option [ngValue]="obj" *ngFor="let obj of subLinea">
                                             {{obj.nombre}}
                                         </option>

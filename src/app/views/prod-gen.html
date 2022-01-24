@@ -47,7 +47,7 @@
                                     name="admin.combo1" [(ngModel)]="admin.combo1" (change)="mostrarSelec()"
                                     style="width: 86%; margin-left: 10px;">
                                         <option [ngValue]="obj" *ngFor="let obj of Linea">
-                                            {{obj.nombre}}
+                                            {{obj.id}}
                                         </option>
                                     </select>
                                 </div>
@@ -72,7 +72,7 @@
 									<div style="width: 31%;">
                                         <span style=" font-family: 'PoppinsMedium';">Producto: </span>
                                         <span style="color:rgb(255,0,0)">*</span>
-                                        <div style="margin-top: 5px;">
+                                        <div style="margin-top: 5px; ">
                                             <input type="radio" id="prodtipo1" name="prodtipo" [value]="'Codigo'"
                                             [(ngModel)]="admin.campo2">
                                             <label for="prodtipo1" >Codigo</label>
@@ -80,10 +80,6 @@
                                             [(ngModel)]="admin.campo2">
                                             <label for="prodtipo2" >Nombre</label>
                                         </div>
-                                        <mat-radio-group aria-label="Selecciona una opcion">
-                                            <mat-radio-button value="'codigo'">Codigo</mat-radio-button>
-                                            <mat-radio-button value="'Nombre'">Nombre</mat-radio-button>
-                                        </mat-radio-group>
                                     </div>
                                     <div style="width: 65%; margin-right: 4%;">
                                         <input type="text" #campo1="ngModel" style="width: 65%; margin-left: 10px;" 
