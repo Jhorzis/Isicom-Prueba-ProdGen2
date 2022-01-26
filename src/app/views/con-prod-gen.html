@@ -42,13 +42,13 @@
                             </div>
                             <div class="bloque__columnas">
                                 <div class="bloque__49">
-                                    <input type="text" id="txt_Segmento"
+                                    <input type="text" id="txt_Segmento" name="prod" [(ngModel)]="prod"
 										class="input input__oscuro" placeholder="Ingrese Producto"/>
                                 </div>
                             </div>
                             <div class="busqueda__simple bloque__contenido__flex__end">
                                 <input id="btnLimpiar" type="submit" Class="boton boton__negro" value="Limpiar"/>
-                                <input id="btnBuscar" type="submit" Class="boton boton__verde" value="Buscar"/>
+                                <input id="btnBuscar" type="submit" Class="boton boton__verde" value="Buscar" (click)="buscarProdgen()"/>
                             </div>
                         </td>
                         <td></td>
@@ -102,7 +102,36 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+                                <tr role="row" *ngFor="let prod of prodgen">
+                                    <td role="gridcell" class="tabla__td__left">
+                                        <span>{{prod.codigo_sociedad}}</span>
+                                    </td>
+                                    <td role="gridcell" class="tabla__td__left">
+                                        <span>{{prod.linea}}</span>
+                                    </td>
+                                    <td role="gridcell" class="tabla__td__left">
+                                        <span>{{prod.sublinea}}</span>
+                                    </td>
+                                    <td role="gridcell" class="tabla__td__left">
+                                        <span>{{prod.codigo_material}}</span>
+                                    </td>
+                                    <td role="gridcell" class="tabla__td__left">
+                                        <a [routerLink]="['/ProdGenerico']" class="link link__verde">{{prod.material}}</a>
+                                    </td>
+                                    <td role="gridcell" class="tabla__td__left">
+                                        <span>{{prod.unimed}}</span>
+                                    </td>
+                                    <td role="gridcell" class="tabla__td__left">
+                                        <span [ngClass]="{'estado':true,
+                                        'estado__activo':prod.estado=='ACTIVO',
+                                        'estado__inactivo':prod.estado=='INACTIVO'}">{{prod.estado}}</span>
+                                    </td>
+                                    <td role="gridcell" class="tabla__td__left">
+                                        <img src="../../assets/img/{{prod.estado}}.png" (click)="clickImg(prod)"/>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </td>

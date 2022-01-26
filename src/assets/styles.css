@@ -6,6 +6,15 @@ label,span{
   font-family: 'PoppinsRegular' !important;
 }
 
+.nom_input{
+  width: 40%;
+  line-height: 35px;
+}
+
+.input_error{
+  border: 1px solid red !important;
+}
+
 @font-face{
     font-family: 'PoppinsSemibold';
     src: url(font/poppins_semibold.eot);
@@ -3327,6 +3336,7 @@ table {
 }
 .bloque__49 {
   width: 49%;
+  display: flex;
 }
 
 .bloque__32 {
@@ -3935,6 +3945,7 @@ table {
 .animacion__in {
 	animation-duration: 0.5s;
   animation-name: animacionIn;
+  width: 100%;
 }
 
 @keyframes animacionIn {
@@ -4617,9 +4628,9 @@ figure.snip1105.hover:before {
  .dialogNoClose {
  	font-family: 'PoppinsRegular'; 
  	border-radius: 6px; 
- 	padding: 30px !important; 
- 	padding-left: 50px !important; 
- 	padding-right: 50px !important;
+ 	padding: 10px !important; 
+ 	padding-left: 20px !important; 
+ 	padding-right: 20px !important;
  	border: 0px !important;
  }
  

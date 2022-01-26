@@ -5,6 +5,34 @@
             <td class="overlay__box__titulo">Búsqueda Producto</td>
             <td></td>
         </tr>
+       <tr>
+           <td></td>
+           <td> &#160; </td>
+           <td></td>
+       </tr> 
+        <tr>
+            <td></td>
+            <td>
+                <table id="dataTable1" role="grid" aria-readonly="true" style="width: 100%;"
+                class="tabla">
+                    <thead>
+                        <tr role="row">
+                            <th role="columnheader" class="tabla__td__left" scope="col">
+                                <span></span>
+                            </th>
+                            <th role="columnheader" class="tabla__td__left" scope="col">
+                                <span>Código SAP</span>
+                            </th>
+                            <th role="columnheader" class="tabla__td__left" scope="col">
+                                <span>Producto</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </td>
+            <td></td>
+        </tr>
         <tr>
             <td></td>
             <td></td>
@@ -13,7 +41,11 @@
         <tr>
             <td></td>
             <td>
-                <input id="btnCerrar" type="button" (click)="onNoClick()" Class="boton boton__negro" value="cancelar" />
+                <input id="btnCerrar" type="button" (click)="onNoClick()" Class="boton boton__negro" 
+                value="Cancelar" />
+                &#160;&#160;
+                <input id="btnCerrar" type="button" (click)="onNoClick()" Class="boton boton__verde" 
+                value="Nuevo" />
             </td>
             <td></td>
         </tr>

@@ -24,4 +24,18 @@ export class ProdGenServices{
     getSubLineas(codlinea:string): Observable<any>{
         return this._http.get(this.url+'listarSubLinea?cod_linea='+codlinea,{responseType: 'json'});
 	}
+
+	getProductos(codLinea:string,codSubLinea:string,material:string,pagina:string): Observable<any>{
+		
+		let body = {
+			cod_linea: codLinea,
+			cod_sublinea: codSubLinea,
+			material: material,
+			cantidad_filas: '20',
+			pagina: pagina
+		};
+		console.log("## DATOS: ");
+		console.log(body);
+		return this._http.post(this.url+'buscar',body,{responseType: 'json'});
+	}
 }

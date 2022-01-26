@@ -4,6 +4,7 @@ import { SubLinea } from '../models/subLinea';
 import { Admin } from '../models/admin';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatRadioModule} from '@angular/material/radio';
+import { ProdGenServices } from '../services/prod-gen.service';
 
 
 export interface DialogData{
@@ -11,39 +12,95 @@ export interface DialogData{
 }
 @Component({
   selector: 'prod-gen',
-  templateUrl: '../views/prod-gen.html'
+  templateUrl: '../views/prod-gen.html',
+  providers: [ProdGenServices]
 })
 export class ProdGenComponent implements OnInit {
     public titulo: string;
     public mensaje_error: string;
     public admin: Admin;
     public Linea: Linea[];
+    public lineaSelect : Linea;
+    public lista: any[];
     public subLinea: SubLinea[];
+    public subLineaSelect: SubLinea;
 
-    constructor(public dlg: MatDialog){
+    constructor(public dlg: MatDialog,
+        private _prodGenService: ProdGenServices){
         this.titulo = "Producto Genérico";
         this.mensaje_error = "";
+        this.lista = [];
         this.admin = new Admin("","","","","","","",(new Linea("00","Selecione una Linea")),
         (new SubLinea("00","0","Selecione una SubLinea")),(null));
         this.Linea = [];
+        this.lineaSelect = new Linea("00","Selecione una Linea");
         this.subLinea = [];
+        this.subLineaSelect = new SubLinea("00","0","Selecione una SubLinea");
     }
 
     ngOnInit(): void {
         this.Linea.push(new Linea("00","Selecione una Linea"));
-        /*this.Linea.push(new Linea("1","Concreto"));
-        this.Linea.push(new Linea("2","Cemento"));*/
         this.subLinea.push(new SubLinea("00","0","Selecione una SubLinea"));
-        
+        this.admin.campo2 = 'Nombre';
+        this.getLinea();
     }
+
+    getLinea(){
+		this._prodGenService.getLineas().subscribe(
+			(data: any) => {
+				if(data['resultado'] != 1){
+					console.log(data);
+				}else{
+					this.lista = data['datos'];
+          for(let lst of this.lista){
+            this.Linea.push(new Linea(lst['datos'].split("|")[1],lst['datos'].split("|")[0]));
+          }
+				}
+			},
+			(error) => {
+				console.log("## ERROR: "); console.log(<any>error);
+			}
+    );
+	}
+
+  getSubLinea(codLinea: string){
+    this._prodGenService.getSubLineas(codLinea).subscribe(
+      (data: any) => {
+				if(data['resultado'] != 1){
+					console.log(data);
+				}else{
+					this.lista = data['datos'];
+          for(let lst of this.lista){
+            this.subLinea.push(new SubLinea(lst['datos'].split("|")[1],codLinea,lst['datos'].split("|")[0]));
+          }
+				}
+			},
+      (error) => {
+				console.log("## ERROR: "); console.log(<any>error);
+      }
+    );
+  }
 
     buscarProducto(){
         console.log("Buscar producto: "+this.admin.campo2);
-        const dialogRef = this.dlg.open(dlg_producto,{
-            width: '700px',
-            data: {titulo: this.titulo}
-        });
-
+        var codso = document.getElementById('txt_codSociedad');
+        var linea = document.getElementById('cb_linea');
+        var sublinea = document.getElementById('cb_sublinea');
+        var req = true;
+        codso?.classList.remove('input_error'); linea?.classList.remove('input_error'); 
+        sublinea?.classList.remove('input_error');
+        this.mensaje_error = '';
+        if(this.admin.campo1 == ""){ codso?.classList.add('input_error'); req = false;}
+        if(this.admin.combo1.id == '00'){ linea?.classList.add('input_error'); req = false; }
+        if(this.admin.combo2.id == '00'){ sublinea?.classList.add('input_error'); req = false; }
+        if(req){
+            const dialogRef = this.dlg.open(dlg_producto,{
+                width: '700px',
+                data: {titulo: this.titulo}
+            });
+        }else{
+            this.mensaje_error = 'Ingrese los datos necesarios.';
+        }
 
     }
 
@@ -55,19 +112,12 @@ export class ProdGenComponent implements OnInit {
       }
     
     mostrarSelec(){
-    this.subLinea = [];
-    this.admin.combo2 = new SubLinea("00","0","Selecione una SubLinea");
-    this.subLinea.push(new SubLinea("00","0","Selecione una SubLinea"));
-    if(this.admin.combo1.id == "1"){
-        
-        this.subLinea.push(new SubLinea("1","1","Concreto1"));
-        this.subLinea.push(new SubLinea("2","1","Concreto2"));
-    }else{
-        this.subLinea.push(new SubLinea("1","2","Cemento1"));
-        this.subLinea.push(new SubLinea("2","2","Cemento2"));
-    }
-    console.log(this.admin.combo1);
-    }
+        this.subLinea = [];
+        this.subLineaSelect = new SubLinea("00","0","Selecione una SubLinea");
+        this.subLinea.push(new SubLinea("00","0","Selecione una SubLinea"));
+        this.getSubLinea(this.admin.combo1.id);
+        console.log(this.admin.combo1);
+      }
 
     onSubmit(){}
 }
