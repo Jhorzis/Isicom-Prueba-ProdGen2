@@ -28,14 +28,23 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <tr role="row" *ngFor="let itm of listaDatos" >
+                            <td role="gridcell" class="tabla__td__left">
+                                <span>{{itm}}</span>
+                            </td>
+                            <td role="gridcell" class="tabla__td__left">
+                                <span>{{itm}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </td>
             <td></td>
         </tr>
         <tr>
             <td></td>
-            <td></td>
+            <td>&#160;</td>
             <td></td>
         </tr>
         <tr>

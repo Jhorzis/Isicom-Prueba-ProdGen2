@@ -124,18 +124,21 @@ export class ConProdGenComponent implements OnInit {
 
   activar(prod:ProductoGenerico){
     let est = prod.estado == 'ACTIVO'? 'INACTIVO':'ACTIVO';
-    this._prodGenService.activar(prod.id_producto_generico,est).subscribe(
-      (data: any) =>{
-        if(data['resultado'] != 1){
-					console.log(data);
-				}else{
-          this.paginacion(this.idx);
+    let esta = prod.estado == 'ACTIVO'? 'inactivar':'activar';
+    if(window.confirm('¿Desea '+esta+' el registro?')){
+      this._prodGenService.activar(prod.id_producto_generico,est).subscribe(
+        (data: any) =>{
+          if(data['resultado'] != 1){
+            console.log(data);
+          }else{
+            this.paginacion(this.idx);
+          }
+        },
+        (error)=>{
+          console.log("## ERROR: "); console.log(<any>error);
         }
-      },
-      (error)=>{
-        console.log("## ERROR: "); console.log(<any>error);
-      }
-    );
+      );
+    }
   }
 
   placeSelect(campo1:any,campo2:any){

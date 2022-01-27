@@ -45,4 +45,10 @@ export class ProdGenServices{
 		};
 		return this._http.patch(this.url+'actualizarEstado/'+id.toString(),body,{responseType: 'json'});
 	}
+
+	buscarProducto(codSociedad:string,codLinea:string,codSublinea:string,matDesc:string,codMate:string): Observable<any>{
+        let param = 'material_sociedad='+codSociedad+'&cod_linea='+codLinea+'&cod_sublinea='+codSublinea;
+		param+='&material_des='+matDesc+'&codigo_material='+codMate;
+		return this._http.get(this.url+'buscarMaterial?'+param,{responseType: 'json'});
+	}
 }

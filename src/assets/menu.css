@@ -59,12 +59,12 @@
   }
   
   .menu__ico__admin {
-    background: transparent url(ico_manager.png) no-repeat 50% 50%/55% 55%;
+    background: transparent url('../assets/img/ico_manager.png') no-repeat 50% 50%/55% 55%;
     
   }
   
   .menu__ico__admin:hover {
-    background: transparent url(ico_manager_hover.png) no-repeat 50% 50%/55% 55%;
+    background: transparent url('../assets/img/ico_manager_hover.png') no-repeat 50% 50%/55% 55%;
     
       
   }
@@ -152,6 +152,91 @@
     display: block;
   }
   /* FIN MENU */
+
+  .menu__ico__bandeja {
+    background: transparent url(ico_bandeja.png) no-repeat 50% 50%;
+  }
+  
+  .menu__ico__bandeja:hover {
+    background: transparent url(ico_bandeja_hover.png) no-repeat 50% 50%;
+  }
+  
+  .menu__ico__programacion {
+    background: transparent url(ico_programacion.png) no-repeat 50% 50%;
+  }
+  
+  .menu__ico__programacion:hover {
+    background: transparent url(ico_programacion_hover.png) no-repeat 50% 50%;  
+  }
+  
+  /* nuevo menu 02-09-21*/
+  
+  .submenu_2 {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 66px;
+    min-width: 230px;
+    background-color: #444a52;
+  }
+  
+  .submenu_2__item:hover {
+    background-color: #212429;
+  }
+  
+  .submenu_2__item {
+    display: block;
+    padding: 0 15px;
+    position: relative;
+  }
+  
+  .submenu_2__item__link {
+    display: block;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .submenu_2__item__link:hover {
+    color: #F4B94A;
+    cursor: auto;
+  }
+  
+  .submenu_2__item:hover .submenu_3 {
+    display: block;
+  }
+  
+  .menu__principal__item:hover .submenu_2 {
+    display: block;
+  }
+  
+  .submenu_3 {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 230px;
+    min-width: 230px;
+    background-color: #212429;
+  }
+  
+  .submenu_3__item {
+    display: block;
+    padding: 0 15px;
+  }
+  
+  .submenu_3__item__link {
+    display: block;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .submenu_3__item__link:hover {
+    color: #F4B94A;
+  }
+  /* fin nuevo menu 02-09-21*/
 
   
 /* HEADER */

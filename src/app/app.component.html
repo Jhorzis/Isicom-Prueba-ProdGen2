@@ -1,1 +1,330 @@
+<div class="divCab">
+    <div class="menu__lateral">
+        <div class="menu__lateral__icon">
+        <div></div>
+        <div></div>
+        <div></div>
+        </div>
+        <nav class="menu__lateral__nav">
+            <ul class="menu__principal">
+                <div >
+                    <li class="menu__principal__item">
+                        <button style="height:64px;width:64px" class="btn_general">
+                            <img src="../assets/img/home.png" alt=""/>
+                        </button>
+                    </li>
+                </div>
+                <div>
+				<li class="menu__principal__item">
+					<a escape="true" text="ADMINISTRACIÓN" class="menu__principal__link menu__ico__admin">
+					</a>
+					<ul class="submenu_2"> 
+						<div class="submenu_div"> 
+							<li class="submenu_2__item">
+								<a escape="true"
+									class="submenu_2__item__link">Config. Obra
+								</a>
+								<ul class="submenu_3" >
+									<div class="submenu_div" style="height: 275px; overflow-y: auto;"> 
+									<li class="submenu_3__item" style="display: none">
+										<a escape="true" text="Plantas Fijas" class="submenu_3__item__link">
+										</a>
+									</li>
+									<li class="submenu_3__item">
+										<a escape="true" class="submenu_3__item__link">
+                                            Sub Etapa Obra
+										</a>
+									</li>
+									<li class="submenu_3__item">
+										<a escape="true" class="submenu_3__item__link">
+                                            Especialidad
+										</a>
+									</li>
+		
+									<li class="submenu_3__item">
+										<a escape="true" class="submenu_3__item__link">Rubro
+										</a>
+									</li>
+									<li class="submenu_3__item">
+										<a escape="true" class="submenu_3__item__link">Tipo de Obra
+										</a>
+									</li>
+									
+									<li class="submenu_3__item">
+										<a escape="true" class="submenu_3__item__link">Estrucutura Pr.
+										</a>
+									</li>
+									
+									<li class="submenu_3__item">
+										<a escape="true" class="submenu_3__item__link">Rol Analista Ing.
+										</a>
+									</li>
+									
+									<li class="submenu_3__item">
+										<a escape="true" class="submenu_3__item__link">Analista Ing.
+										</a>
+									</li>
+									
+									<li class="submenu_3__item">
+										<a escape="true" class="submenu_3__item__link">Obra - Programa
+										</a>
+									</li>
+									
+									<li class="submenu_3__item">
+										<a escape="true"
+											 class="submenu_3__item__link">Obra - Sub Programa
+										</a>
+									</li>
+									
+									<li class="submenu_3__item">
+										<a escape="true"
+											 class="submenu_3__item__link">Actividades - Tipo Hito
+										</a>
+									</li>
+									<div
+										rendered="#{javascript:Visible_MegaObra()}">
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">Plantas Dedicadas
+											</a>
+										</li>
+									</div>
+									<div
+										rendered="#{javascript:Visible_OpcionesMenu()}">
+										<li class="submenu_3__item" style="display:none">
+											<a escape="true"  class="submenu_3__item__link">
+                                                Cambio Proyeccion
+											</a>
+										</li>
+										<li class="submenu_3__item">
+											<a escape="true"  class="submenu_3__item__link">
+                                                Ubigeo
+											</a>
+										</li>
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">
+                                                Unidad Medida
+											</a>
+										</li>
+									</div>
+									<li class="submenu_3__item">
+										<a [routerLink]="['/ConsultaProdGenerico']" class="submenu_3__item__link">
+                                            Producto Genérico
+										</a>
+									</li>
+									</div>
+								</ul>
+							</li>
+						<div rendered="false">
+							<li class="submenu_2__item">
+								<a escape="true" class="submenu_2__item__link">
+                                    Categorización
+								</a>
+								<ul class="submenu_3">
+									<div rendered="#{javascript:Visible_OpcionesMenu()}">
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">
+                                                Categoria - Rango Puntaje
+											</a>
+										</li>
+										
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">Categoria - Grupo Cliente
+											</a>
+										</li>
+										
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">Categoria - Opciones
+											</a>
+										</li>
+									</div>
+								</ul>
+							</li>
+						</div>
+						<div>
+							<li class="submenu_2__item">
+								<a escape="true" 
+									class="submenu_2__item__link">
+                                    Registro Consumo
+								</a>
+								<ul class="submenu_3">
+									<div
+										rendered="#{javascript:Visible_OpcionesMenu()}">
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">
+                                                Consumo - Producto
+											</a>
+										</li>
+										
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">
+                                                Consumo - Marca
+											</a>
+										</li>
+										
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">Consumo - Tipo Producto
+											</a>
+										</li>
+										
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">
+                                                Consumo - Competencia
+											</a>
+										</li>
+										
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">
+                                                Consumo - Motivo
+											</a>
+										</li>				
+									</div>
+								</ul>
+							</li>
+						</div>
+						<div>
+							<li class="submenu_2__item">
+								<a escape="true" 
+									class="submenu_2__item__link">
+                                    Autoconstrucción
+								</a>
+								<ul class="submenu_3">
+									<div
+										rendered="#{javascript:Visible_OpcionesMenu()}">
+										<li class="submenu_3__item">
+											<a escape="true"  class="submenu_3__item__link">
+                                                Maestro de Obra
+											</a>
+										</li>
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">
+                                                Autoconstrucción - T. Ejecución
+											</a>
+										</li>
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">
+                                                Autoconstrucción - T. Estructura
+											</a>
+										</li>
+									</div>
+								</ul>
+							</li>
+						</div>
+						<div>
+							<li class="submenu_2__item">
+								<a escape="true" 
+									class="submenu_2__item__link">
+                                    Personal
+								</a>
+								<ul class="submenu_3">
+									<div rendered="#{javascript:Visible_Usuario()}">
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">Usuario
+											</a>
+										</li>
+									</div>
+									<li class="submenu_3__item">
+										<a escape="true"  class="submenu_3__item__link">Suplencia
+										</a>
+									</li>
+								</ul>
+							</li>
+						</div>
+						<div>
+							<li class="submenu_2__item">
+								<a escape="true" 
+									class="submenu_2__item__link">Clientes
+								</a>
+								<ul class="submenu_3">
+									<div
+										rendered="#{javascript:Visible_OpcionesMenu()}">
+										<li class="submenu_3__item">
+											<a escape="true"  class="submenu_3__item__link">Sedes
+											</a>
+										</li>
+										<li class="submenu_3__item">
+											<a escape="true"  class="submenu_3__item__link">
+                                                Grupo Clientes
+											</a>
+										</li>
+										<li class="submenu_3__item">
+											<a escape="true"  class="submenu_3__item__link">
+                                                Estrategia Clientes
+											</a>
+										</li>
+									</div>
+								</ul>
+							</li>
+						</div>
+						<div>
+							<li class="submenu_2__item">
+								<a escape="true" 
+									class="submenu_2__item__link">
+                                    Encuestas y Reportes
+								</a>
+								<ul class="submenu_3" >
+									<div rendered="#{javascript:Visible_OpcionesMenu()}">
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">
+                                                Encuestas - Formatos
+											</a>
+										</li>
+										<li class="submenu_3__item">
+											<a escape="true"
+												 class="submenu_3__item__link">
+												Encuestas - Supervisiones
+											</a>
+										</li>
+										
+										<li class="submenu_3__item">
+											<a escape="true"  class="submenu_3__item__link">
+                                                Reporte Envio
+											</a>
+										</li>									
+										</div>
+								</ul>
+							</li>
+						</div>
+						</div>
+					</ul>
+				</li>
+			</div>
+            </ul>
+        </nav>
+    </div>
+    <div class="header">
+			<div>
+		      <img src="../assets/img/header_logo.png" alt=""/>
+		    </div>
+		    <div class="header__opciones">
+		    <div class="header__usuario">
+        <p>
+        	<label escape="true" id="cf_nomusu"></label>
+        </p>
+        <div id="pnl_Salir">
+            <a escape="true" text="Cerrar Sesión" class="link link__verde link__bajo">
+            </a>
+            <button value="close" id="btn_Logout" style="display:none"></button>
+        </div>
+        
+      </div>
+      <div class="header__foto">
+        <img style="height:32px;width:64px" src="../assets/img/avatar-default.png" alt=""/>
+      </div>
+		</div>
+	</div>
+</div>
 <router-outlet></router-outlet>
