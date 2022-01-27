@@ -38,4 +38,11 @@ export class ProdGenServices{
 		console.log(body);
 		return this._http.post(this.url+'buscar',body,{responseType: 'json'});
 	}
+
+	activar(id:number,estado:string): Observable<any>{
+		let body = {
+			estado: estado
+		};
+		return this._http.patch(this.url+'actualizarEstado/'+id.toString(),body,{responseType: 'json'});
+	}
 }

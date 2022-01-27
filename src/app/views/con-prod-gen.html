@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="busqueda__simple bloque__contenido__flex__end">
-                                <input id="btnLimpiar" type="submit" Class="boton boton__negro" value="Limpiar"/>
+                                <input id="btnLimpiar" type="submit" Class="boton boton__negro" (click)="refresh()" value="Limpiar"/>
                                 <input id="btnBuscar" type="submit" Class="boton boton__verde" value="Buscar" (click)="buscarProdgen()"/>
                             </div>
                         </td>
@@ -128,10 +128,28 @@
                                         'estado__inactivo':prod.estado=='INACTIVO'}">{{prod.estado}}</span>
                                     </td>
                                     <td role="gridcell" class="tabla__td__left">
-                                        <img src="../../assets/img/{{prod.estado}}.png" (click)="clickImg(prod)"/>
+                                        <img src="../../assets/img/{{prod.estado}}.png" (click)="activar(prod)"
+                                        class="btn_mod"/>
                                     </td>
                                 </tr>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="8" scope="colgroup" style="background-color: #F4F4F7 !important;">
+                                        <div class="pager_container">
+                                            <div role="navigation" class="page_right">
+                                                <div class="page_group">
+                                                    <a *ngFor="let pag of lstpaginas" attr.id="pagina{{pag}}" 
+                                                    (click)="paginacion(pag)"
+                                                    [ngClass]="{'page': true,'page_select':pag == idx,'btn_mod':pag!=idx}">
+                                                        {{pag}}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </td>

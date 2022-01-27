@@ -15,6 +15,74 @@ label,span{
   border: 1px solid red !important;
 }
 
+.pager_container{
+  background-color: #F4F4F7 !important;
+  display: flex;
+  justify-content: flex-end;
+  border-collapse: collapse;
+  width: 100%;
+  position: relative;
+}
+
+.page_right{
+  display: flex;
+  margin-top: 0px !important;
+  background-color: #F4F4F7 !important;
+  justify-content: flex-end;
+  padding: 0px 0px 0px 0px;
+  text-align: center;
+  font-size: .9em;
+  color: #848484;
+  float: right;
+}
+
+.page_group{
+  display: flex;
+  width: 100%;
+  height: 27px;
+  line-height: 27px;
+  text-align: center;
+  font-family: 'Source Sans Pro';
+  font-size: 13px;
+  text-decoration: none;
+  color: transparent;
+  margin: 0px;
+  padding: 0px;
+  margin-top: -10px;
+}
+
+.page{
+  display: block;
+  width: 25px;
+  height: 27px;
+  line-height: 27px;
+  text-align: center;
+  background-color: #fff;
+  font-family: 'Source Sans Pro';
+  font-size: 14px;
+  color: #4D4F5C;
+  text-decoration: none;
+  border-left-width: 0px;
+  margin: 0px;
+  padding: 0px 7px;
+  border-color: #cccccc;
+  font-family: 'PoppinsRegular';
+}
+
+.page_select{
+  background: #05c65d !important;
+  color: #fff !important;
+  font-weight: unset !important;
+}
+
+.page_group div + div{
+  margin-left: 5px;
+}
+
+.btn_mod{
+  cursor: pointer;
+}
+
 @font-face{
     font-family: 'PoppinsSemibold';
     src: url(font/poppins_semibold.eot);
@@ -2305,10 +2373,6 @@ font-family: "PoppinsMedium", Arial, Helvetica, sans-serif;
   display: flex;
 }
 
-.page{
-  display: flex;
-  justify-content: space-between;
-}
 
 .col{
   background: #FFFFFF;

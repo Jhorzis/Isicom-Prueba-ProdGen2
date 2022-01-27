@@ -15,7 +15,6 @@ import { ConProdGenComponent } from './components/con-prod-gen.component';
 import { ProdGenComponent } from './components/prod-gen.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LogService } from './shared/log.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,7 @@ import { LogService } from './shared/log.service';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [appRoutingProviders,LogService],
+  providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

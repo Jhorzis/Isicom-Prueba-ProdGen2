@@ -3,7 +3,6 @@ import { Linea } from '../models/linea';
 import { SubLinea } from '../models/subLinea';
 import { ProdGenServices } from '../services/prod-gen.service';
 import { ProductoGenerico } from '../models/productoGenerico';
-import { LogService } from '../shared/log.service';
 
 @Component({
   selector: 'con-prod-gen',
@@ -18,11 +17,14 @@ export class ConProdGenComponent implements OnInit {
   public subLineaSelect: SubLinea;
   public prod:string;
   public prodgen: ProductoGenerico[];
+  public cantlistprod: number;
   public lista: any[];
+  public paginas: number;
+  public lstpaginas: number[];
+  public idx: number;
 
   constructor(
-		private _prodGenService: ProdGenServices,
-    private logger: LogService
+		private _prodGenService: ProdGenServices
     ) {
     this.titulo = 'Producto Genérico';
     this.Linea = [];
@@ -32,6 +34,10 @@ export class ConProdGenComponent implements OnInit {
     this.subLineaSelect = new SubLinea("00","0","Selecione una SubLinea");
     this.prod = '';
     this.prodgen = [];
+    this.cantlistprod = 0;
+    this.paginas = 0;
+    this.lstpaginas = [];
+    this.idx = 1;
    }
 
   ngOnInit(): void {
@@ -40,18 +46,23 @@ export class ConProdGenComponent implements OnInit {
     
     this.getLinea();
     this.getProductos('','','','1');
-    this.logger.log("Comienzo producto");
+    console.log("Comienzo producto");
+  }
+
+  refresh(): void {
+    window.location.reload();
+  }
+
+  paginacion(pag:number){
+    this.idx = pag;
+    this.getProductos((this.lineaSelect.id == '00'? '':this.lineaSelect.id),
+    (this.subLineaSelect.id == '00'? '':this.subLineaSelect.id),this.prod,pag.toString());
   }
 
   buscarProdgen(){
-    console.log(this.lineaSelect.id+' - '+this.subLineaSelect.id+' - '+this.prod)
-
+    
     this.getProductos((this.lineaSelect.id == '00'? '':this.lineaSelect.id),
     (this.subLineaSelect.id == '00'? '':this.subLineaSelect.id),this.prod,'1');
-  }
-
-  clickImg(prod: ProductoGenerico){
-    alert(prod.material)
   }
 
   getLinea(){
@@ -97,7 +108,28 @@ export class ConProdGenComponent implements OnInit {
 					console.log(data);
 				}else{
           this.prodgen = data['datos']['lista'];
-          console.log(this.prodgen)
+          this.cantlistprod = data['datos']['total_filas']
+          this.paginas = Math.ceil(this.cantlistprod / 20);
+          this.lstpaginas = [];
+          for(var i = 1;i<=this.paginas;i++){
+            this.lstpaginas.push(i);
+          }
+        }
+      },
+      (error)=>{
+        console.log("## ERROR: "); console.log(<any>error);
+      }
+    );
+  }
+
+  activar(prod:ProductoGenerico){
+    let est = prod.estado == 'ACTIVO'? 'INACTIVO':'ACTIVO';
+    this._prodGenService.activar(prod.id_producto_generico,est).subscribe(
+      (data: any) =>{
+        if(data['resultado'] != 1){
+					console.log(data);
+				}else{
+          this.paginacion(this.idx);
         }
       },
       (error)=>{
