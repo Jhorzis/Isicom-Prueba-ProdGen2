@@ -83,6 +83,21 @@ label,span{
   cursor: pointer;
 }
 
+.div_cn_scroll::-webkit-scrollbar {
+  width: 7px;
+height: 7px;
+}
+.div_cn_scroll::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.div_cn_scroll::-webkit-scrollbar-thumb {
+  background: #EBB11A;
+  border-radius: 10px;
+}
+.div_cn_scroll::-webkit-scrollbar-thumb:hover {
+  background: #9c9c9c;
+}
+
 @font-face{
     font-family: 'PoppinsSemibold';
     src: url(font/poppins_semibold.eot);

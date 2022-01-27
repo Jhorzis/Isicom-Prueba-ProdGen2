@@ -2,7 +2,7 @@
     <table class="animacion__in">
         <tr>
             <td></td>
-            <td class="overlay__box__titulo">Búsqueda Producto</td>
+            <td class="overlay__box__titulo">Búsqueda Producto </td>
             <td></td>
         </tr>
        <tr>
@@ -13,32 +13,40 @@
         <tr>
             <td></td>
             <td>
-                <table id="dataTable1" role="grid" aria-readonly="true" style="width: 100%;"
-                class="tabla">
-                    <thead>
-                        <tr role="row">
-                            <th role="columnheader" class="tabla__td__left" scope="col">
-                                <span></span>
-                            </th>
-                            <th role="columnheader" class="tabla__td__left" scope="col">
-                                <span>Código SAP</span>
-                            </th>
-                            <th role="columnheader" class="tabla__td__left" scope="col">
-                                <span>Producto</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <div role="row" *ngFor="let itm of listaDatos" >
-                            <td role="gridcell" class="tabla__td__left">
-                                <span></span>
-                            </td>
-                            <td role="gridcell" class="tabla__td__left">
-                                <span></span>
-                            </td>
-                        </div>
-                    </tbody>
-                </table>
+                <div style="height: 65vh; overflow-x: auto;" class="div_cn_scroll">
+                    <table id="dataTable1" role="grid" aria-readonly="true" style="width: 100%;"
+                    class="tabla">
+                        <thead>
+                            <tr role="row" >
+                                <th role="columnheader" class="tabla__td__left" scope="col">
+                                    <span></span>
+                                </th>
+                                <th role="columnheader" class="tabla__td__left" scope="col">
+                                    <span>Código SAP</span>
+                                </th>
+                                <th role="columnheader" class="tabla__td__left" scope="col">
+                                    <span>Producto</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row" *ngFor="let itm of listaDatos" >
+                                <td role="gridcell" class="tabla__td__left">
+                                    <input type="checkbox" value="item">
+                                </td>
+                                <td role="gridcell" class="tabla__td__left">
+                                    <span>{{ 
+                                        left(right(itm.split('¬')[1],8),3)+'-'+
+                                        right(right(itm.split('¬')[1],8),5)
+                                    }}</span>
+                                </td>
+                                <td role="gridcell" class="tabla__td__left">
+                                    <span>{{itm.split('¬')[0]}}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </td>
             <td></td>
         </tr>

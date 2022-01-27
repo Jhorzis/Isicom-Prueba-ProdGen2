@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConProdGenComponent } from './components/con-prod-gen.component'; 
 import { ProdGenComponent } from './components/prod-gen.component';
+import { dlg_producto } from './components/prod-ge-dialog.component'; 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -20,7 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     ConProdGenComponent,
-    ProdGenComponent
+    ProdGenComponent,
+    dlg_producto
   ],
   imports: [
     BrowserModule,
