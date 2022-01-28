@@ -56,4 +56,23 @@ export class ProdGenServices{
 		let param = 'codigo_material='+codMate;
 		return this._http.get(this.url+'buscarUnidadMedida?'+param,{responseType: 'json'});
 	}
+
+	guardarProducto(codSoc:string,codLinea:string,linea:string,codSubLinea:string,
+		subLinea:string,codMaterial:string,mat:string,UM:string){
+		let body = {
+			codigo_sociedad: codSoc,
+			cod_linea: codLinea,
+			linea: linea,
+			cod_sublinea: codSubLinea,
+			sublinea: subLinea,
+			codigo_material: codMaterial,
+			material: mat,
+			creado_por: null,
+			unimed: UM,
+			estado: 'ACTIVO'
+		};
+		console.log("## DATOS: ");
+		console.log(body);
+		return this._http.post(this.url+'crear',body,{responseType: 'json'});
+	}
 }

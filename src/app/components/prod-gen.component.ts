@@ -3,9 +3,10 @@ import { Linea } from '../models/linea';
 import { SubLinea } from '../models/subLinea';
 import { Admin } from '../models/admin';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatRadioModule} from '@angular/material/radio';
 import { ProdGenServices } from '../services/prod-gen.service';
 import { dlg_producto } from './prod-ge-dialog.component';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { DialogoConfirmacionComponent } from './confirmation-dialog.component';
 
 
 @Component({
@@ -26,7 +27,9 @@ export class ProdGenComponent implements OnInit {
     public info:string;
 
     constructor(public dlg: MatDialog,
-        private _prodGenService: ProdGenServices){
+        private _prodGenService: ProdGenServices,
+        public dialogo: MatDialog,
+        private _router: Router){
         this.titulo = "Producto Genérico";
         this.mensaje_error = ""; this.info = '';
         this.lista = [];
@@ -151,6 +154,35 @@ export class ProdGenComponent implements OnInit {
     );
   }
 
+  guardarProducto(){
+    this._prodGenService.guardarProducto(this.admin.campo1,this.admin.combo1.id,this.admin.combo1.nombre,
+      this.admin.combo2.id,this.admin.combo2.nombre,this.admin.campo4,this.admin.campo5,this.admin.campo6)
+      .subscribe(
+      (data: any) => {
+				if(data['resultado'] != 1){
+					console.log(data);
+				}else{
+					console.log(data['datos']);
+          this._router.navigate(['/ConsultaProdGenerico']);
+				}
+			},
+			(error) => {
+				console.log("## ERROR: "); console.log(<any>error);
+			}
+    );
+  }
+
+  onSubmit(){
+    console.log('CLick submit');
+    this.dialogo.open(DialogoConfirmacionComponent, {
+      data: '¿Desea guardar el registro?'
+    }).afterClosed().subscribe((confirmado: Boolean) => {
+      if (confirmado) {
+        this.guardarProducto();
+      } else { }
+    });
+  }
+
   placeSelect(campo1:any,campo2:any){
       if (campo1==null || campo2==null) {
         return false;
@@ -159,13 +191,11 @@ export class ProdGenComponent implements OnInit {
     }
   
   mostrarSelec(){
-      this.subLinea = [];
-      this.subLineaSelect = new SubLinea("00","0","Selecione una SubLinea");
-      this.subLinea.push(new SubLinea("00","0","Selecione una SubLinea"));
-      this.getSubLinea(this.admin.combo1.id);
-    }
-
-  onSubmit(){}
+    this.subLinea = [];
+    this.subLineaSelect = new SubLinea("00","0","Selecione una SubLinea");
+    this.subLinea.push(new SubLinea("00","0","Selecione una SubLinea"));
+    this.getSubLinea(this.admin.combo1.id);
+  }
 
   right(str:string,chr:number){
     if(str){

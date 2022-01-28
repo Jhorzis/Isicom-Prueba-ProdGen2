@@ -10,6 +10,20 @@
            <td> &#160; </td>
            <td></td>
        </tr> 
+       <tr>
+           <td></td>
+           <td>
+               <div *ngIf="mensaje_error" style="color:rgb(255,0,0); font-family: 'PoppinsMedium';">
+                   {{mensaje_error}}
+               </div>
+           </td>
+           <td></td>
+       </tr> 
+       <tr>
+           <td></td>
+           <td *ngIf="mensaje_error"> &#160; </td>
+           <td></td>
+       </tr> 
         <tr>
             <td></td>
             <td>

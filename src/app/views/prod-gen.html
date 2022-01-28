@@ -161,7 +161,7 @@
                 <td class="bloque__contenido bloque__contenido__gris bloque__contenido__flex__end bloque__contenido__guardar">
                     <input type="button" [routerLink]="['/ConsultaProdGenerico']"
                     class="boton boton__negro" value="Cancelar"/>&#160;&#160;
-                    <input type="button" class="boton boton__verde" value="Grabar"/>
+                    <input type="submit" class="boton boton__verde" value="Grabar" [disabled]="!formProducto.form.valid"/>
                 </td>
                 <td></td>
             </tr>

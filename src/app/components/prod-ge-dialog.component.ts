@@ -17,6 +17,7 @@ export interface DialogData{
   
   export class dlg_producto {
     listaDatos: string[] = [];
+    mensaje_error: string = '';
       constructor(
         public dialogRef: MatDialogRef<dlg_producto>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -42,6 +43,7 @@ export interface DialogData{
           (data: any) => {
             if(data['resultado'] != 1){
               console.log(data);
+              this.mensaje_error = data['mensaje'];
             }else{
               var dat = data['datos']+'¬'+codm;
               this.onNoClick(dat);
