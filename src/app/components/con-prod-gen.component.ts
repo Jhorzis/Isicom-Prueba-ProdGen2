@@ -3,6 +3,8 @@ import { Linea } from '../models/linea';
 import { SubLinea } from '../models/subLinea';
 import { ProdGenServices } from '../services/prod-gen.service';
 import { ProductoGenerico } from '../models/productoGenerico';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogoConfirmacionComponent } from './confirmation-dialog.component';
 
 @Component({
   selector: 'con-prod-gen',
@@ -24,20 +26,15 @@ export class ConProdGenComponent implements OnInit {
   public idx: number;
 
   constructor(
-		private _prodGenService: ProdGenServices
+		private _prodGenService: ProdGenServices,
+    public dialogo: MatDialog
     ) {
     this.titulo = 'Producto Genérico';
-    this.Linea = [];
-    this.lineaSelect = new Linea("00","Selecione una Linea");
-    this.subLinea = [];
-    this.lista = [];
+    this.Linea = []; this.lineaSelect = new Linea("00","Selecione una Linea");
+    this.subLinea = []; this.lista = [];
     this.subLineaSelect = new SubLinea("00","0","Selecione una SubLinea");
-    this.prod = '';
-    this.prodgen = [];
-    this.cantlistprod = 0;
-    this.paginas = 0;
-    this.lstpaginas = [];
-    this.idx = 1;
+    this.prod = ''; this.prodgen = [];
+    this.cantlistprod = 0; this.paginas = 0; this.lstpaginas = []; this.idx = 1;
    }
 
   ngOnInit(): void {
@@ -47,6 +44,18 @@ export class ConProdGenComponent implements OnInit {
     this.getLinea();
     this.getProductos('','','','1');
     console.log("Comienzo producto");
+  }
+
+  mostrarDialogo(): void {
+    this.dialogo.open(DialogoConfirmacionComponent, {
+        data: `¿Te gusta programar en TypeScript?`
+      }).afterClosed().subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          alert("¡A mí también!");
+        } else {
+          alert("Deberías probarlo, a mí me gusta :)");
+        }
+      });
   }
 
   refresh(): void {
@@ -125,20 +134,24 @@ export class ConProdGenComponent implements OnInit {
   activar(prod:ProductoGenerico){
     let est = prod.estado == 'ACTIVO'? 'INACTIVO':'ACTIVO';
     let esta = prod.estado == 'ACTIVO'? 'inactivar':'activar';
-    if(window.confirm('¿Desea '+esta+' el registro?')){
-      this._prodGenService.activar(prod.id_producto_generico,est).subscribe(
-        (data: any) =>{
-          if(data['resultado'] != 1){
-            console.log(data);
-          }else{
-            this.paginacion(this.idx);
+    this.dialogo.open(DialogoConfirmacionComponent, {
+      data: '¿Desea '+esta+' el registro?'
+    }).afterClosed().subscribe((confirmado: Boolean) => {
+      if (confirmado) {
+        this._prodGenService.activar(prod.id_producto_generico,est).subscribe(
+          (data: any) =>{
+            if(data['resultado'] != 1){
+              console.log(data);
+            }else{
+              this.paginacion(this.idx);
+            }
+          },
+          (error)=>{
+            console.log("## ERROR: "); console.log(<any>error);
           }
-        },
-        (error)=>{
-          console.log("## ERROR: "); console.log(<any>error);
-        }
-      );
-    }
+        );
+      } else { }
+    });
   }
 
   placeSelect(campo1:any,campo2:any){

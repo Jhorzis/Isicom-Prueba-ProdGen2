@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule, HttpHeaders, HttpResponse } from '@angular/common/http';
 
-//import 'rxjs/add/operator/map';
 import { map, catchError, retry } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Linea } from '../models/linea';
@@ -49,6 +48,12 @@ export class ProdGenServices{
 	buscarProducto(codSociedad:string,codLinea:string,codSublinea:string,matDesc:string,codMate:string): Observable<any>{
         let param = 'material_sociedad='+codSociedad+'&cod_linea='+codLinea+'&cod_sublinea='+codSublinea;
 		param+='&material_des='+matDesc+'&codigo_material='+codMate;
+		console.log(param)
 		return this._http.get(this.url+'buscarMaterial?'+param,{responseType: 'json'});
+	}
+
+	buscarMedidas(codMate:string){
+		let param = 'codigo_material='+codMate;
+		return this._http.get(this.url+'buscarUnidadMedida?'+param,{responseType: 'json'});
 	}
 }

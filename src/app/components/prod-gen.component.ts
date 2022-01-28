@@ -23,11 +23,12 @@ export class ProdGenComponent implements OnInit {
     public lista2: any[];
     public subLinea: SubLinea[];
     public subLineaSelect: SubLinea;
+    public info:string;
 
     constructor(public dlg: MatDialog,
         private _prodGenService: ProdGenServices){
         this.titulo = "Producto Genérico";
-        this.mensaje_error = "";
+        this.mensaje_error = ""; this.info = '';
         this.lista = [];
         this.lista2 = [];
         this.admin = new Admin("","","","","","","",(new Linea("00","Selecione una Linea")),
@@ -99,6 +100,23 @@ export class ProdGenComponent implements OnInit {
               width: '700px',
               data: {titulo: this.titulo, listaDatos: this.lista2}
           });
+
+          dialogRef.afterClosed().subscribe(
+            result=>{
+              console.log(result);
+              if(result){
+                if(result['dat']){
+                  var dato = result['dat'].split('¬');
+                  this.admin.campo4 = dato[2];
+                  this.admin.campo5 = dato[1];
+                  this.admin.campo6 = dato[0];
+                }
+              }
+            },
+            error=>{
+              console.log(error);
+            }
+          );
       }else{
           this.mensaje_error = 'Ingrese los datos necesarios.';
       }
@@ -109,6 +127,7 @@ export class ProdGenComponent implements OnInit {
     let tip = this.admin.campo2;
     var codmat = '';
     var descmat = ''
+    this.lista2 = [];
     if(tip == 'Codigo'){
       codmat = this.admin.campo3; descmat = ''
     }else{
@@ -121,11 +140,9 @@ export class ProdGenComponent implements OnInit {
 					console.log(data);
 				}else{
 					this.lista = data['datos'];
-          //console.log(this.lista);
           for(let lst of this.lista){
             this.lista2.push(lst['datos']);
           }
-          //console.log(this.lista2)
 				}
 			},
 			(error) => {
@@ -146,10 +163,21 @@ export class ProdGenComponent implements OnInit {
       this.subLineaSelect = new SubLinea("00","0","Selecione una SubLinea");
       this.subLinea.push(new SubLinea("00","0","Selecione una SubLinea"));
       this.getSubLinea(this.admin.combo1.id);
-      console.log(this.admin.combo1);
     }
 
   onSubmit(){}
+
+  right(str:string,chr:number){
+    if(str){
+      return str.slice(str.length-chr,str.length);
+    }else{return '';}
+  }
+
+  left(str:string,chr:number){
+    if(str){
+      return str.slice(0,chr-str.length);
+    }else{return '';}
+  }
 }
 
 

@@ -36,7 +36,7 @@
                             <td class="bloque__contenido bloque__contenido__blanco bloque__columnas" style="margin-bottom: 0px;">
                                 <div class="bloque__49">
                                     <div class="nom_input">
-                                        <span style=" font-family: 'PoppinsMedium';">Codigo Sociedad: </span>
+                                        <span style=" font-family: 'PoppinsMedium !important';">Codigo Sociedad: </span>
                                         <span style="color:rgb(255,0,0)">*</span>
                                     </div>
                                     <div style="width: 60%;" >
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="bloque__49">
                                     <div class="nom_input">
-                                        <span style=" font-family: 'PoppinsMedium';">Linea: </span>
+                                        <span style=" font-family: 'PoppinsMedium !important';">Linea: </span>
                                         <span style="color:rgb(255,0,0)">*</span>
                                     </div>
                                     <div style="width: 60%;"> 
@@ -67,7 +67,7 @@
                             <td class="bloque__contenido bloque__contenido__blanco bloque__columnas" style="margin-bottom: 0px;">
                                 <div class="bloque__49">
                                     <div class="nom_input">
-                                        <span style=" font-family: 'PoppinsMedium';">Sub-Linea: </span>
+                                        <span style=" font-family: 'PoppinsMedium !important';">Sub-Linea: </span>
                                         <span style="color:rgb(255,0,0)">*</span>
                                     </div>
                                     <div style="width: 60%;"> 
@@ -82,15 +82,15 @@
                                 </div>
                                 <div class="bloque__49 bloque__columnas" >
 									<div style="width: 40%;">
-                                        <span style=" font-family: 'PoppinsMedium';">Producto: </span>
+                                        <span style=" font-family: 'PoppinsMedium !important';">Producto: </span>
                                         <span style="color:rgb(255,0,0)">*</span>
                                         <div style="margin-top: 5px; " id="div_radio">
                                             <input type="radio" id="prodtipo1" name="prodtipo" [value]="'Codigo'"
                                             [(ngModel)]="admin.campo2">
-                                            <label for="prodtipo1" >Codigo</label>
+                                            <label for="prodtipo1" style="font-family: 'PoppinsRegular';" >Codigo</label>
                                             <input type="radio" id="prodtipo2" name="prodtipo" [value]="'Nombre'"
                                             [(ngModel)]="admin.campo2">
-                                            <label for="prodtipo2" >Nombre</label>
+                                            <label for="prodtipo2" style="font-family: 'PoppinsRegular';">Nombre</label>
                                         </div>
                                     </div>
                                     <div style="width: 60%;">
@@ -107,13 +107,29 @@
 							<td></td>
 							<td class="bloque__contenido bloque__contenido__blanco bloque__columnas" style="margin-bottom: 0px;">
 								<div class="bloque__49">
-                                    <span style=" font-family: 'PoppinsMedium';">Codigo - Nombre: </span>
-									<span style="color:rgb(255,0,0); font-family: 'PoppinsMedium';" >{{mensaje_error}}</span>
-									<span> {{admin.campo4}}</span> - <span>{{admin.campo5}}</span>
+                                    <div class="nom_input">
+                                        <span style=" font-family: 'PoppinsMedium !important';">Codigo - Nombre: </span>
+                                        
+                                    </div>
+                                    <div style="width: 60%;" class="nom_input" >
+                                        <div *ngIf="mensaje_error">
+                                            <span style="color:rgb(255,0,0); font-family: 'PoppinsMedium !important';" >{{mensaje_error}}</span>
+                                        </div>
+                                        <div *ngIf="admin.campo4">
+                                            <span> {{ 
+                                                left(right(admin.campo4,8),3)+'-'+
+                                                right(right(admin.campo4,8),5)
+                                            }}</span> - <span>{{admin.campo5}}</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="bloque__49">
-                                    <span style=" font-family: 'PoppinsMedium';">Unidad de Medida: </span>
-									<span style="font-family: 'PoppinsRegular';" >{{admin.campo6}}</span>
+                                    <div class="nom_input">
+                                        <span style=" font-family: 'PoppinsMedium !important';">Unidad de Medida: </span>
+                                    </div>
+                                    <div style="width: 60%;" class="nom_input" >
+                                        <span style="font-family: 'PoppinsRegular';" >{{admin.campo6}}</span>
+                                    </div>
                                 </div>
                             </td>
                             <td></td>
@@ -123,7 +139,7 @@
 							<td class="bloque__contenido bloque__contenido__blanco bloque__columnas" style="margin-bottom: 0px;">
 								<div class="bloque__49">
                                     <div class="nom_input">
-                                        <span style=" font-family: 'PoppinsMedium';">Estado: </span>
+                                        <span style=" font-family: 'PoppinsMedium !important';">Estado: </span>
                                         <span style="color:rgb(255,0,0)">*</span>
                                     </div>
                                     <div style="width: 60%">
