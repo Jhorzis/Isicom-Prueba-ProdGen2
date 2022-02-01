@@ -5,6 +5,7 @@ import { ProdGenServices } from '../services/prod-gen.service';
 import { ProductoGenerico } from '../models/productoGenerico';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from './confirmation-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'con-prod-gen',
@@ -27,7 +28,8 @@ export class ConProdGenComponent implements OnInit {
 
   constructor(
 		private _prodGenService: ProdGenServices,
-    public dialogo: MatDialog
+    public dialogo: MatDialog,
+    private _router: Router
     ) {
     this.titulo = 'Producto Genérico';
     this.Linea = []; this.lineaSelect = new Linea("00","Selecione una Linea");
@@ -44,6 +46,25 @@ export class ConProdGenComponent implements OnInit {
     this.getLinea();
     this.getProductos('','','','1');
     console.log("Comienzo producto");
+  }
+
+  verProducto(pg:ProductoGenerico){
+    var v = {
+      id_producto_generico : pg.id_producto_generico,
+      codigo_sociedad : pg.codigo_sociedad,
+      cod_linea : pg.cod_linea,
+      linea : pg.linea,
+      cod_sublinea : pg.cod_sublinea,
+      sublinea : pg.sublinea,
+      codigo_material : pg.codigo_material,
+      material : pg.material,
+      unimed : pg.unimed,
+      estado : pg.estado
+    }
+
+    sessionStorage.setItem('producto',JSON.stringify(v));
+    
+    this._router.navigate(['/ProdGenerico']);
   }
 
   mostrarDialogo(): void {

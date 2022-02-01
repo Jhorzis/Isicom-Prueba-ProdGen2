@@ -117,7 +117,7 @@
                                         <span>{{prod.codigo_material}}</span>
                                     </td>
                                     <td role="gridcell" class="tabla__td__left">
-                                        <a [routerLink]="['/ProdGenerico']" class="link link__verde">{{prod.material}}</a>
+                                        <a (click)="verProducto(prod)" class="link link__verde btn_mod">{{prod.material}}</a>
                                     </td>
                                     <td role="gridcell" class="tabla__td__left">
                                         <span>{{prod.unimed}}</span>

@@ -7,7 +7,7 @@ import { ProdGenServices } from '../services/prod-gen.service';
 import { dlg_producto } from './prod-ge-dialog.component';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DialogoConfirmacionComponent } from './confirmation-dialog.component';
-
+import { ProductoGenerico } from '../models/productoGenerico';
 
 @Component({
   selector: 'prod-gen',
@@ -24,29 +24,55 @@ export class ProdGenComponent implements OnInit {
     public lista2: any[];
     public subLinea: SubLinea[];
     public subLineaSelect: SubLinea;
-    public info:string;
+    public estado:string;
 
     constructor(public dlg: MatDialog,
         private _prodGenService: ProdGenServices,
         public dialogo: MatDialog,
         private _router: Router){
-        this.titulo = "Producto Genérico";
-        this.mensaje_error = ""; this.info = '';
-        this.lista = [];
-        this.lista2 = [];
+        this.mensaje_error = ""; this.estado = '';
+        this.lista = []; this.lista2 = [];
+        this.titulo = "";
         this.admin = new Admin("","","","","","","",(new Linea("00","Selecione una Linea")),
         (new SubLinea("00","0","Selecione una SubLinea")),(null));
         this.Linea = [];
         this.lineaSelect = new Linea("00","Selecione una Linea");
         this.subLinea = [];
         this.subLineaSelect = new SubLinea("00","0","Selecione una SubLinea");
+
     }
 
     ngOnInit(): void {
-        this.Linea.push(new Linea("00","Selecione una Linea"));
-        this.subLinea.push(new SubLinea("00","0","Selecione una SubLinea"));
-        this.admin.campo2 = 'Nombre';
-        this.getLinea();
+      this.Linea.push(new Linea("00","Selecione una Linea"));
+      this.subLinea.push(new SubLinea("00","0","Selecione una SubLinea"));
+      this.admin.campo2 = 'Nombre';
+      this.admin.combo3 = 'ACTIVO';
+
+      var pg = sessionStorage.getItem('producto');
+      var prod:ProductoGenerico = new ProductoGenerico(0,'','','','','','','','','','','');
+      if(pg) prod = JSON.parse(pg) as ProductoGenerico;
+      sessionStorage.removeItem('producto');
+      console.log(prod);
+      if(prod){
+        this.admin.id = prod.id_producto_generico.toString();
+        this.admin.campo1 = prod.codigo_sociedad;
+        this.admin.combo1 = new Linea(prod.cod_linea,prod.linea);
+        this.getSubLinea(prod.cod_linea);
+        this.admin.combo2 = new SubLinea(prod.cod_sublinea,prod.cod_linea,prod.sublinea);
+        this.admin.campo4 = prod.codigo_material;
+        this.admin.campo5 = prod.material;
+        this.admin.campo6 = prod.unimed;
+        this.admin.combo3 = prod.estado;
+      }
+
+      if(this.admin.id != '0'){
+        this.titulo = 'Actualizar Producto Genérico';
+        this.estado = 'actualizar';
+      }else{
+        this.titulo = 'Nuevo Producto Genérico';
+        this.estado = 'guardar';
+      }
+      this.getLinea();
     }
 
     getLinea(){
@@ -172,13 +198,32 @@ export class ProdGenComponent implements OnInit {
     );
   }
 
+  actualizarProducto(){
+    this._prodGenService.actualizarProducto(parseInt(this.admin.id),this.admin.campo1,this.admin.combo1.id,this.admin.combo1.nombre,
+      this.admin.combo2.id,this.admin.combo2.nombre,this.admin.campo4,this.admin.campo5,this.admin.campo6).subscribe(
+      (data: any) => {
+      if(data['resultado'] != 1){
+        console.log(data);
+      }else{
+        console.log(data['datos']);
+        this._router.navigate(['/ConsultaProdGenerico']);
+      }
+			},
+			(error) => {
+				console.log("## ERROR: "); console.log(<any>error);
+			} 
+    );
+  }
+
   onSubmit(){
     console.log('CLick submit');
     this.dialogo.open(DialogoConfirmacionComponent, {
-      data: '¿Desea guardar el registro?'
+      data: '¿Desea '+this.estado+' el registro?'
     }).afterClosed().subscribe((confirmado: Boolean) => {
       if (confirmado) {
-        this.guardarProducto();
+        if(this.admin.id){
+          this.actualizarProducto();
+        }else{ this.guardarProducto(); }
       } else { }
     });
   }

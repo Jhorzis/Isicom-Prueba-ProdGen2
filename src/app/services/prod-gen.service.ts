@@ -71,8 +71,25 @@ export class ProdGenServices{
 			unimed: UM,
 			estado: 'ACTIVO'
 		};
-		console.log("## DATOS: ");
-		console.log(body);
+		console.log("## DATOS GUARDAR: "); console.log(body);
 		return this._http.post(this.url+'crear',body,{responseType: 'json'});
+	}
+
+	actualizarProducto(idprodge:number,codSoc:string,codLinea:string,linea:string,codSubLinea:string,
+		subLinea:string,codMaterial:string,mat:string,UM:string){
+		let body = {
+			id_producto_generico: idprodge,
+			codigo_sociedad: codSoc,
+			cod_linea: codLinea,
+			linea: linea,
+			cod_sublinea: codSubLinea,
+			sublinea: subLinea,
+			codigo_material: codMaterial,
+			material: mat,
+			unimed: UM,
+			estado: 'ACTIVO'
+		};
+		console.log("## DATOS ACTUALIZAR: "); console.log(body);
+		return this._http.post(this.url+'actualizar',body,{responseType: 'json'});
 	}
 }
