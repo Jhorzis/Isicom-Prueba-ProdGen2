@@ -33,9 +33,17 @@ export class ProdGenServices{
 			cantidad_filas: '20',
 			pagina: pagina
 		};
-		console.log("## DATOS: ");
-		console.log(body);
 		return this._http.post(this.url+'buscar',body,{responseType: 'json'});
+	}
+
+	getProductosALL(codLinea:string,codSubLinea:string,material:string): Observable<any>{
+		
+		let body = {
+			cod_linea: codLinea,
+			cod_sublinea: codSubLinea,
+			material: material
+		};
+		return this._http.post(this.url+'buscarAll',body,{responseType: 'json'});
 	}
 
 	activar(id:number,estado:string): Observable<any>{
@@ -71,7 +79,6 @@ export class ProdGenServices{
 			unimed: UM,
 			estado: 'ACTIVO'
 		};
-		console.log("## DATOS GUARDAR: "); console.log(body);
 		return this._http.post(this.url+'crear',body,{responseType: 'json'});
 	}
 
@@ -89,7 +96,6 @@ export class ProdGenServices{
 			unimed: UM,
 			estado: 'ACTIVO'
 		};
-		console.log("## DATOS ACTUALIZAR: "); console.log(body);
 		return this._http.post(this.url+'actualizar',body,{responseType: 'json'});
 	}
 }

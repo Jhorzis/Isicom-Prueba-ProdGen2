@@ -6,6 +6,7 @@ import { ProductoGenerico } from '../models/productoGenerico';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from './confirmation-dialog.component';
 import { Router } from '@angular/router';
+import { GLOBAL } from '../services/global';
 
 @Component({
   selector: 'con-prod-gen',
@@ -20,6 +21,7 @@ export class ConProdGenComponent implements OnInit {
   public subLineaSelect: SubLinea;
   public prod:string;
   public prodgen: ProductoGenerico[];
+  public prodgen1: ProductoGenerico[];
   public cantlistprod: number;
   public lista: any[];
   public paginas: number;
@@ -35,7 +37,7 @@ export class ConProdGenComponent implements OnInit {
     this.Linea = []; this.lineaSelect = new Linea("00","Selecione una Linea");
     this.subLinea = []; this.lista = [];
     this.subLineaSelect = new SubLinea("00","0","Selecione una SubLinea");
-    this.prod = ''; this.prodgen = [];
+    this.prod = ''; this.prodgen = []; this.prodgen1 = [];
     this.cantlistprod = 0; this.paginas = 0; this.lstpaginas = []; this.idx = 1;
    }
 
@@ -44,8 +46,9 @@ export class ConProdGenComponent implements OnInit {
     this.subLinea.push(new SubLinea("00","0","Selecione una SubLinea"));
     
     this.getLinea();
-    this.getProductos('','','','1');
+    this.getAllProductos('','','','1');
     console.log("Comienzo producto");
+    
   }
 
   verProducto(pg:ProductoGenerico){
@@ -85,13 +88,13 @@ export class ConProdGenComponent implements OnInit {
 
   paginacion(pag:number){
     this.idx = pag;
-    this.getProductos((this.lineaSelect.id == '00'? '':this.lineaSelect.id),
+    this.getAllProductos((this.lineaSelect.id == '00'? '':this.lineaSelect.id),
     (this.subLineaSelect.id == '00'? '':this.subLineaSelect.id),this.prod,pag.toString());
   }
 
   buscarProdgen(){
-    
-    this.getProductos((this.lineaSelect.id == '00'? '':this.lineaSelect.id),
+    this.prodgen1 = [];
+    this.getAllProductos((this.lineaSelect.id == '00'? '':this.lineaSelect.id),
     (this.subLineaSelect.id == '00'? '':this.subLineaSelect.id),this.prod,'1');
   }
 
@@ -150,6 +153,38 @@ export class ConProdGenComponent implements OnInit {
         console.log("## ERROR: "); console.log(<any>error);
       }
     );
+  }
+
+  getAllProductos(codLinea:string,codSubLinea:string,material:string,pagina:string){
+    this._prodGenService.getProductosALL(codLinea,codSubLinea,material).subscribe(
+      (data: any) =>{
+        if(data['resultado'] != 1){
+					console.log(data);
+				}else{
+          if(this.prodgen1.length>0){
+            this.paginado(pagina);
+          }else{
+            this.prodgen1 = data['datos']['lista'];
+            this.cantlistprod = this.prodgen1.length;
+            this.paginas = Math.ceil(this.cantlistprod / 20);
+            this.lstpaginas = [];
+            for(var i = 1;i<=this.paginas;i++){
+              this.lstpaginas.push(i);
+            }
+            this.paginado(pagina);
+          }
+        }
+      },
+      (error)=>{
+        console.log("## ERROR: "); console.log(<any>error);
+      }
+    );
+  }
+
+  paginado(pagina:string){
+    let nro = parseInt(pagina);
+    this.prodgen = this.prodgen1.slice((nro * GLOBAL.page_count)-GLOBAL.page_count,(nro * GLOBAL.page_count));
+    
   }
 
   activar(prod:ProductoGenerico){

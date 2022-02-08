@@ -19,6 +19,7 @@ import { ProdGenComponent } from './components/prod-gen.component';
 import { dlg_producto } from './components/prod-ge-dialog.component'; 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PaginadorPipe } from './paginador.pipe';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ConProdGenComponent,
     ProdGenComponent,
     dlg_producto,
-    DialogoConfirmacionComponent
+    DialogoConfirmacionComponent,
+    PaginadorPipe
   ],
   imports: [
     BrowserModule,
